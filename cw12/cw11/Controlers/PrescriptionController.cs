@@ -66,7 +66,9 @@ namespace cw11.Controllers
                 return BadRequest("trip has been ended");
 
 
-            return Ok(trip);
+            await _dbService.AddTrip(id, trip);
+
+            return Created();
         }
 
 

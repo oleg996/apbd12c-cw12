@@ -21,4 +21,6 @@ public interface IDbService
     Task<Boolean> IsTripFull(int IdTrip);
 
     Task<Boolean> IsTripValid(int IdTrip);
+
+    Task AddTrip(int id, AddTripDTO tripDTO);
 }

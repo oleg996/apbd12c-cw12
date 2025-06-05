@@ -97,8 +97,24 @@ public class DbService : IDbService
     {
         int IdCl = (await _context.Clients.Where(cl => cl.Pesel == tripDTO.Pesel).FirstAsync()).IdClient;
 
-        _context.ClientTrips.Add(new ClientTrip() { IdClient = IdCl, IdTrip = id, RegisteredAt = DateTime.Now, PaymentDate = tripDTO.PaymentDate.ToDateTime(TimeOnly.MinValue) });
+        var ct = new ClientTrip() { IdClient = IdCl, IdTrip = id, RegisteredAt = DateTime.Now };
 
+
+        if (tripDTO.PaymentDate == DateOnly.MinValue)
+        {
+
+            ct.PaymentDate = null;
+        }
+        else
+        {
+            ct.PaymentDate = tripDTO.PaymentDate.ToDateTime(TimeOnly.MinValue);
+        }
+            
+
+        _context.ClientTrips.Add(ct);
+
+
+        await _context.SaveChangesAsync();
     }
 
 }
