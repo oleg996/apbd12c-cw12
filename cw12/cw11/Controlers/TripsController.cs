@@ -11,10 +11,10 @@ namespace cw11.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PrescriptionController : ControllerBase
+    public class TripsController : ControllerBase
     {
         private readonly IDbService _dbService;
-        public PrescriptionController(IDbService dbService)
+        public TripsController(IDbService dbService)
         {
             _dbService = dbService;
         }
